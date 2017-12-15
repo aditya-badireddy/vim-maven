@@ -16,9 +16,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import com.cg.vim.util.JsonDateDeserializer;
 import com.cg.vim.util.JsonDateSerializer;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 
@@ -68,7 +70,7 @@ public class User implements Serializable {
 	public Date getDob() {
 		return this.dob;
 	}
-
+	@JsonDeserialize(using=JsonDateDeserializer.class)
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
@@ -116,7 +118,7 @@ public class User implements Serializable {
 	public Date getUpdTsp() {
 		return this.updTsp;
 	}
-
+	@JsonDeserialize(using=JsonDateDeserializer.class)
 	public void setUpdTsp(Date updTsp) {
 		this.updTsp = updTsp;
 	}

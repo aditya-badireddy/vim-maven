@@ -1,0 +1,24 @@
+Configuration:
+  status: warn
+  Appenders:
+    Console:
+      name: CONSOLE
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: "%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"
+    RollingFile:
+       name: APPLICATION
+        fileName: ../logs/vim-maven.log
+        filePattern: "../logs/archive/$${date:yyyy-MM}/vim-maven-%d{yyyy-MM-dd}-%i.log.gz"
+        PatternLayout:
+          Pattern: "%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"
+        policies:
+          TimeBasedTriggeringPolicy:
+            interval: 1440
+            modulate: true
+  Loggers:
+      Root:
+        level: info
+        AppenderRef:
+           ref: CONSOLE
+           ref: APPLICATION

@@ -1,0 +1,20 @@
+<div class='panel panel-primary'>
+  <div class='panel-heading'>
+    <h3>{{pageTitle}}</h3>
+  </div>
+  <button class='btn btn-primary' (click)='showUsers()'>
+    Show Users
+  </button>
+  <div class='panel-body'>
+    <div *ngIf='users'>
+      <ul class="users">
+        <li *ngFor="let user of users">
+          <a routerLink="/user/{{user.userName}}">
+            <span class="badge">{{user.userName}}</span> {{user.firstName}}
+          </a>
+          <button class="delete" title="delete user" (click)="delete(user)">x</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -12,12 +12,21 @@ const httpOptions = {
 @Injectable()
 export class UsersService {
   private usersUrl = 'http://localhost:8180/vim-maven/api/users/';
+  private deleteUrl = 'http://localhost:8180/vim-maven/api/users/deleteUser/';
   constructor(private http: HttpClient) { }
   public getUsers(): Observable<any> {
     return this.http.get(this.usersUrl, httpOptions)
       .pipe(
       tap(Users => console.log(`fetched Users`)),
       catchError(this.handleError('getUsers', []))
+      );
+  }
+
+  public deleteUser(userName): Observable<any> {
+    return this.http.post(this.deleteUrl+userName+"/", httpOptions)
+      .pipe(
+      tap(msg => console.log(`Deleted User`)),
+      catchError(this.handleError('deleteUser', []))
       );
   }
   /**

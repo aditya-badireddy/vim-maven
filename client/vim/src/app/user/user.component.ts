@@ -16,6 +16,10 @@ export class UserComponent implements OnInit {
   public showUsers(): void {
     this.getUsers();
   }
+  public delete(data) {
+    this._usersService.deleteUser(data.userName)
+      .subscribe(users => this.getUsers());
+  }    
   ngOnInit(): void {
     this.pageTitle = 'Users';
   }
